@@ -32,9 +32,29 @@ const ChartSection: React.FC<ChartSectionProps> = ({ data }) => {
                         <stop offset="100%" stopColor={"#119F97"} stopOpacity={1} /> {/* Right: Full opacity */}
                     </linearGradient>
                 </defs>
-                <XAxis dataKey="date" hide orientation="bottom" />
+                <XAxis
+                    dataKey="date"
+                    hide
+                    orientation="bottom"
+                    allowDecimals={false}
+                    width={0}
+                    height={0}
+                    mirror={false}
+                    xAxisId={0}
+                    tickCount={5}
+                    type={'category'}
+                    padding={{
+                        left: 0,
+                        right: 0
+                    }}
+                    allowDataOverflow={false}
+                    scale={'auto'}
+                    reversed={false}
+                    allowDuplicatedCategory={true}
+                />
                 <Tooltip />
                 <Area
+
                     type="monotone"
                     dataKey="value"
                     stroke="url(#lineGradient)"  // Apply gradient to line stroke

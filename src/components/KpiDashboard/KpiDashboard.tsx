@@ -51,7 +51,7 @@ const KpiDashboard: React.FC = () => {
     };
     const baseCols = kpiCards.length > 2 ? 2 : kpiCards.length || 1;
     const lgCols = kpiCards.length > 3 ? 3 : kpiCards.length || 1;
-    const gridClass = `grid grid-cols-1 sm:grid-cols-${baseCols} lg:grid-cols-${lgCols} gap-4 justify-center items-center`;
+    const gridClass = `grid grid-cols-1 sm:grid-cols-${baseCols} lg:grid-cols-${lgCols} gap-x-6 gap-y-12 justify-center items-center`;
 
     return (
         <div className="py-8 mx-4">
