@@ -3,6 +3,9 @@ import { Metric, Segment } from '../../types';
 import { getMetrics, getSegments } from '../../apis';
 import KpiCard from '../KpiCard';
 
+import styles from './kpiDashboard.module.css';
+
+
 let idCounter = 0;
 const generateUniqueId = () => `id-${idCounter++}`;
 
@@ -27,7 +30,7 @@ const KpiDashboard: React.FC = () => {
     }, []);
 
     const addCard = (id?: string) => {
-        const newCard = { id: generateUniqueId(), metric: metrics?.[0], segmentKey: segments[0]?.segmentKey, segmentId: segments[0]?.values?.[0]?.segmentId };
+        const newCard = { id: generateUniqueId(), metric: metrics?.[0], segmentKey: segments?.[0]?.segmentKey, segmentId: segments[0]?.values?.[0]?.segmentId };
         const updatedCards = [...kpiCards];
         if (!id) {
             updatedCards.splice(0, 0, newCard);
@@ -48,9 +51,7 @@ const KpiDashboard: React.FC = () => {
     };
     const baseCols = kpiCards.length > 2 ? 2 : kpiCards.length || 1;
     const lgCols = kpiCards.length > 3 ? 3 : kpiCards.length || 1;
-    const gridClass = `grid grid-cols-${baseCols} lg:grid-cols-${lgCols} gap-4 p-4 justify-center items-center`;
-
-    const isLastInRow = (index: number, totalCols: number) => (index + 1) % totalCols === 0;
+    const gridClass = `grid grid-cols-1 sm:grid-cols-${baseCols} lg:grid-cols-${lgCols} gap-4 justify-center items-center`;
 
     return (
         <div className="py-8 mx-4">
@@ -58,6 +59,7 @@ const KpiDashboard: React.FC = () => {
                 <div className='flex justify-center p-4'>
                     <button
                         className="bg-primary text-white py-2 px-4 rounded"
+                        disabled={metrics === null || segments === null}
                         onClick={() => addCard()}
                     >
                         Add KPI Card
@@ -68,9 +70,8 @@ const KpiDashboard: React.FC = () => {
                     <div className={gridClass}>
 
                         {kpiCards.map((card, index) => {
-                            const addRightBorder = !isLastInRow(index, lgCols) && index !== kpiCards.length - 1;
 
-                            return (<div key={card?.id} className={` pr-6 ${addRightBorder && 'border-r border-black'}`}>
+                            return (<div key={card?.id} className={` ${styles['vertical-border']} relative min-h-[10.5rem] pr-6`}>
                                 <KpiCard
                                     id={card?.id}
                                     cardDetails={card}

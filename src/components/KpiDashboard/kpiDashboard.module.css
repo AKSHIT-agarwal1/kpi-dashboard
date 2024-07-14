@@ -1,0 +1,13 @@
+@media (min-width: 640px) and (max-width: 1023px) {
+    .vertical-border:nth-child(odd):not(:last-child) {
+        border-right: 1px solid #00000080;
+
+    }
+
+}
+
+@media (min-width: 1024px) {
+    .vertical-border:not(:nth-child(3n)):not(:last-child) {
+        border-right: 1px solid #00000080;
+    }
+}

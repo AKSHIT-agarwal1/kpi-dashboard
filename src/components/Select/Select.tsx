@@ -19,7 +19,7 @@ const Select: React.FC<SelectProps> = ({ value, onChange, children }) => {
         <select
             value={value}
             onChange={onChange}
-            className="block w-full mt-1 p-2 rounded-md bg-[#0000000A] text-[0.875rem]"
+            className="block w-full mt-1 p-2 rounded-md bg-[#0000000A] text-base"
         >
             {children}
         </select>

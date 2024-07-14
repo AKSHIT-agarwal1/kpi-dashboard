@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaPlusCircle } from "react-icons/fa";
-
+import { ColorRing } from 'react-loader-spinner';
 
 import ChartSection from '../ChartSection';
 import Select from '../Select';
@@ -35,6 +35,10 @@ const KpiCard: React.FC<KpiCardProps> = ({ id, cardDetails, metrics, segments, o
             const fetchSnapshot = async () => {
                 const data = await getSnapshot(selectedMetric.id, selectedSegmentKey, selectedSegmentId);
                 if (isCancelled) return;
+                if (data === null) {
+                    setEditMode(true);
+                    alert('Something Went Wrong')
+                }
                 setSnapshotData(data !== null ? data : null);
             };
             fetchSnapshot();
@@ -51,7 +55,15 @@ const KpiCard: React.FC<KpiCardProps> = ({ id, cardDetails, metrics, segments, o
     const chartColor = getChartColor(snapshotData);
     const changeIcon = getChangeIcon(snapshotData);
 
-    if (!(snapshotData || editMode)) return null;
+    if (!(snapshotData || editMode)) return (<ColorRing
+        visible={true}
+        height="80"
+        width="80"
+        ariaLabel="color-ring-loading"
+        wrapperStyle={{ position: 'absolute', top: '30%', left: '45%' }}
+        wrapperClass="color-ring-wrapper"
+        colors={["#119F97", "#119F97", "#119F97", "#119F97", "#119F97"]}
+    />);
 
     return (
         <div className='flex flex-col flex-grow items-center'>
@@ -90,10 +102,10 @@ const KpiCard: React.FC<KpiCardProps> = ({ id, cardDetails, metrics, segments, o
             ) : (
                 <div className='w-full max-w-[100rem] relative' role='button' tabIndex={0} onClick={() => setEditMode(true)}>
                     <div>
-                        <h3 className="text-sm font-medium">{cardDetails.metric.displayName}, {cardDetails.segmentId}</h3>
-                        <div className="flex items-end justify-between mb-2">
+                        <h3 className="text-base font-medium">{cardDetails.metric.displayName}, {cardDetails.segmentId}</h3>
+                        <div className="flex items-end justify-between">
                             <div>
-                                <div className="text-2xl">{snapshotData?.currentValue}</div>
+                                <div className="text-lg">{snapshotData?.currentValue}</div>
                                 <div className=" text-sm flex items-center">
                                     <span className={`text-[${chartColor}]`}>{changeIcon}</span>
                                     <span className="mr-1">{snapshotData?.gainsOrLossesPercentage}%</span>
@@ -102,7 +114,7 @@ const KpiCard: React.FC<KpiCardProps> = ({ id, cardDetails, metrics, segments, o
                             </div>
 
                             {snapshotData?.snapshot.values && <div className="h-32 flex-grow max-w-[88%]">
-                                <ChartSection key={id} color={chartColor} data={snapshotData?.snapshot.values} />
+                                <ChartSection data={snapshotData?.snapshot.values} />
                             </div>}
                         </div>
                     </div>
@@ -110,7 +122,7 @@ const KpiCard: React.FC<KpiCardProps> = ({ id, cardDetails, metrics, segments, o
                     <button
                         style={{ pointerEvents: 'all' }}
                         aria-label='add KPI card'
-                        className="absolute bottom-[50%] right-[-50px] w-8 h-8 invisible hover:visible z-[1]" onClick={(e) => { e.stopPropagation(); onAddCard(id) }}
+                        className="absolute bottom-[50%] right-[-46px] w-8 h-8 invisible hover:visible z-[1]" onClick={(e) => { e.stopPropagation(); onAddCard(id) }}
                     >
                         <FaPlusCircle className='text-primary text-[1.25rem] bg-white ' />
                     </button>

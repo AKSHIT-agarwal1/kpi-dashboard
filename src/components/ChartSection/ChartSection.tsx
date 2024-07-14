@@ -2,16 +2,15 @@ import React from 'react';
 
 
 import {
-    AreaChart, Area, Tooltip, ResponsiveContainer
+    AreaChart, Area, XAxis, Tooltip, ResponsiveContainer
 } from 'recharts';
 
 interface ChartSectionProps {
     data: any[],
-    color: string,
 }
 
 
-const ChartSection: React.FC<ChartSectionProps> = ({ data, color }) => {
+const ChartSection: React.FC<ChartSectionProps> = ({ data }) => {
     return (
         <ResponsiveContainer width="100%" height="100%">
             <AreaChart
@@ -22,17 +21,18 @@ const ChartSection: React.FC<ChartSectionProps> = ({ data, color }) => {
                     {/* Gradient for the area fill */}
                     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                         {/* Gradient from top (darker shade) to bottom (lighter shade) */}
-                        <stop offset="0%" stopColor={color} stopOpacity={0.2} /> {/* Top: Darker shade */}
-                        <stop offset="100%" stopColor={color} stopOpacity={0} /> {/* Bottom: Lighter shade */}
+                        <stop offset="0%" stopColor={"#119F97"} stopOpacity={0.2} /> {/* Top: Darker shade */}
+                        <stop offset="100%" stopColor={"#119F97"} stopOpacity={0} /> {/* Bottom: Lighter shade */}
                     </linearGradient>
 
                     {/* Gradient for the line stroke */}
                     <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
                         {/* Gradient from right (full opacity) to left (transparent) */}
-                        <stop offset="0%" stopColor={color} stopOpacity={0} />{/* Left: Transparent */}
-                        <stop offset="100%" stopColor={color} stopOpacity={1} /> {/* Right: Full opacity */}
+                        <stop offset="0%" stopColor={"#119F97"} stopOpacity={0} />{/* Left: Transparent */}
+                        <stop offset="100%" stopColor={"#119F97"} stopOpacity={1} /> {/* Right: Full opacity */}
                     </linearGradient>
                 </defs>
+                <XAxis dataKey="date" hide orientation="bottom" />
                 <Tooltip />
                 <Area
                     type="monotone"
