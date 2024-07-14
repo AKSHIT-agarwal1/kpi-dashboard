@@ -66,7 +66,7 @@ const KpiDashboard: React.FC = () => {
                     </button>
                 </div>
             ) :
-                (<div className="relative bg-white rounded-lg shadow p-8">
+                (<div className="relative bg-white rounded-2xl shadow p-8">
                     <div className={gridClass}>
 
                         {kpiCards.map((card, index) => {

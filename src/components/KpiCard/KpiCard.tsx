@@ -95,8 +95,8 @@ const KpiCard: React.FC<KpiCardProps> = ({ id, cardDetails, metrics, segments, o
                         </Select>
                     </div>
                     <div className='flex justify-between mt-2'>
-                        <button className="bg-destructive text-white py-2 px-4 rounded w-24" onClick={handleSave}>Cancel</button>
-                        <button className="bg-primary text-white py-2 px-4 rounded  w-24" onClick={handleSave}>Save</button>
+                        <button className="bg-bg-destructive text-destructive py-1 px-4 rounded-lg w-[6.625rem] h-8 text-base" onClick={handleSave}>Cancel</button>
+                        <button className="bg-primary text-white py-1 px-4 rounded-lg  w-[6.625rem] h-8 text-base" onClick={handleSave}>Add</button>
                     </div>
                 </div>
             ) : (

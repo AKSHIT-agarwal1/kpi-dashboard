@@ -8,7 +8,10 @@ module.exports = {
       primary: '#119F97',
       destructive: '#FF5D39',
       white: '#ffff',
-      black: '#000000CC'
+      black: '#000000CC',
+      bg: {
+        destructive: '#FF5D391F'
+      }
     },
     fontSize: {
       sm: ['0.875rem', {
