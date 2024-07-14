@@ -102,7 +102,7 @@ const KpiCard: React.FC<KpiCardProps> = ({ id, cardDetails, metrics, segments, o
             ) : (
                 <div className='w-full max-w-[100rem] relative' role='button' tabIndex={0} onClick={() => setEditMode(true)}>
                     <div>
-                        <h3 className="text-base font-medium">{cardDetails.metric.displayName}, {cardDetails.segmentId}</h3>
+                        <h2 className="text-base font-medium">{cardDetails.metric.displayName}, {cardDetails.segmentId}</h2>
                         <div className="flex items-end justify-between">
                             <div>
                                 <div className="text-lg">{snapshotData?.currentValue}</div>
