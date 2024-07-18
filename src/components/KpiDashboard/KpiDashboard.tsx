@@ -51,7 +51,7 @@ const KpiDashboard: React.FC = () => {
     };
     const baseCols = kpiCards.length > 2 ? 2 : kpiCards.length || 1;
     const lgCols = kpiCards.length > 3 ? 3 : kpiCards.length || 1;
-    const gridClass = `grid grid-cols-1 sm:grid-cols-${baseCols} lg:grid-cols-${lgCols} gap-x-6 gap-y-12 justify-center items-center`;
+    const gridClass = `grid grid-cols-1 sm:grid-cols-${baseCols} lg:grid-cols-${lgCols} justify-center items-center`;
 
     return (
         <div className="py-8 mx-4">
@@ -68,25 +68,28 @@ const KpiDashboard: React.FC = () => {
             ) :
                 (<div className="relative bg-white rounded-2xl shadow p-8">
                     <div className={gridClass}>
-
                         {kpiCards.map((card, index) => {
-
-                            return (<div key={card?.id} className={` ${styles['vertical-border']} relative min-h-[10.5rem] pr-6`}>
-                                <KpiCard
-                                    id={card?.id}
-                                    cardDetails={card}
-                                    metrics={metrics}
-                                    segments={segments}
-                                    onAddCard={addCard}
-                                    onCancel={() => { }}
-                                    onSave={(metric, segmentKey, segmentId) => handleSave(index, metric, segmentKey, segmentId)}
-                                />
-                            </div>);
+                            return (
+                                <div className={`py-6 ${styles['horizontal-border']}`}>
+                                    <div key={card?.id} className={` ${styles['vertical-border']}   relative min-h-[10.5rem] pr-6 pb-6`}>
+                                        <KpiCard
+                                            id={card?.id}
+                                            cardDetails={card}
+                                            metrics={metrics}
+                                            segments={segments}
+                                            onAddCard={addCard}
+                                            onCancel={() => { }}
+                                            onSave={(metric, segmentKey, segmentId) => handleSave(index, metric, segmentKey, segmentId)}
+                                        />
+                                    </div>
+                                </div>
+                            );
                         })}
 
                     </div>
                 </div>
-                )}
+                )
+            }
         </div >
     );
 };
