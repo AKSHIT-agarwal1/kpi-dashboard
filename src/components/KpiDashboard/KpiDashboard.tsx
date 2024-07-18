@@ -6,8 +6,7 @@ import KpiCard from '../KpiCard';
 import styles from './kpiDashboard.module.css';
 
 
-let idCounter = 0;
-const generateUniqueId = () => `id-${idCounter++}`;
+const generateUniqueId = () => `id-${Date.now()}`;
 
 const KpiDashboard: React.FC = () => {
     const [metrics, setMetrics] = useState<Metric[]>([]);
@@ -70,8 +69,8 @@ const KpiDashboard: React.FC = () => {
                     <div className={gridClass}>
                         {kpiCards.map((card, index) => {
                             return (
-                                <div className={`py-6 ${styles['horizontal-border']}`}>
-                                    <div key={card?.id} className={` ${styles['vertical-border']}   relative min-h-[10.5rem] pr-6 pb-6`}>
+                                <div data-key2={kpiCards.length % 2} data-key3={kpiCards.length % 3} className={`py-6 ${styles['horizontal-border']}`}>
+                                    <div key={card?.id} className={` ${styles['vertical-border']}  relative h-[11rem] px-6 pb-6`}>
                                         <KpiCard
                                             id={card?.id}
                                             cardDetails={card}

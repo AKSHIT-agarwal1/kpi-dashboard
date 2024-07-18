@@ -17,7 +17,15 @@
         border-right: 1px solid transparent;
     }
 
-    .horizontal-border:nth-last-of-type(2) {
+    .horizontal-border:last-child>div {
+        border-right: 1px solid transparent;
+    }
+
+    [data-key2="0"].horizontal-border:nth-last-of-type(2) {
+        border-bottom: 1px solid transparent;
+    }
+
+    [data-key2="1"].horizontal-border:nth-last-of-type(1) {
         border-bottom: 1px solid transparent;
     }
 }
@@ -26,4 +34,27 @@
     .vertical-border {
         border-right: 1px solid #00000080;
     }
+
+    .horizontal-border:nth-of-type(3n)>div {
+        border-right: 1px solid transparent;
+    }
+
+    .horizontal-border:last-child>div {
+        border-right: 1px solid transparent;
+    }
+
+    [data-key3="0"].horizontal-border:nth-last-of-type(3),
+    [data-key3="0"].horizontal-border:nth-last-of-type(2),
+    [data-key3="0"].horizontal-border:nth-last-of-type(1) {
+        border-bottom: 1px solid transparent;
+    }
+
+    [data-key3="1"].horizontal-border:nth-last-of-type(1) {
+        border-bottom: 1px solid transparent;
+    }
+
+    [data-key3="2"].horizontal-border:nth-last-of-type(2) {
+        border-bottom: 1px solid transparent;
+    }
+
 }

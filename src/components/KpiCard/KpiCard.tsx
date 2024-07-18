@@ -122,7 +122,7 @@ const KpiCard: React.FC<KpiCardProps> = ({ id, cardDetails, metrics, segments, o
                     <button
                         style={{ pointerEvents: 'all' }}
                         aria-label='add KPI card'
-                        className="absolute bottom-[50%] right-[-46px] w-8 h-8 invisible hover:visible z-[1]" onClick={(e) => { e.stopPropagation(); onAddCard(id) }}
+                        className="absolute bottom-[50%] right-[-46px] w-8 h-8 invisible hover:visible z-[1] translate-y-2/4	" onClick={(e) => { e.stopPropagation(); onAddCard(id) }}
                     >
                         <FaPlusCircle className='text-primary text-[1.25rem] bg-white ' />
                     </button>
